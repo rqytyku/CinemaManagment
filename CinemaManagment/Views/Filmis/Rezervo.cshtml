@@ -39,7 +39,14 @@
     <div class="pershkrimi">
         <h2>Rezervo nje bilete per filmin - @Html.DisplayFor(model => model.film.Titulli) </h2>
 
-        <table align="center">
+        <dd class="foto">
+            <img src=@Url.Content(Model.film.Foto) width="400" height="300" />
+        </dd>
+        <dd class="pershkrimi">
+            @Html.DisplayFor(model => model.film.Pershkrimi)
+        </dd>
+
+        @*<table align="center">
             <tr>
                 <td>
                     <img src=@Url.Content(Model.film.Foto) width="200" height="300" />
@@ -52,7 +59,7 @@
 
                 </td>
             </tr>
-        </table>
+        </table>*@
 
         @using (Html.BeginForm())
         {
@@ -81,7 +88,7 @@
         }
 
         <div>
-            @Html.ActionLink("Kthehu te Lista e filmave","ShfaqFilma", new { id = Model.film.Kategoria })
+            @Html.ActionLink("Kthehu te Lista e filmave", "ShfaqFilma", new { id = Model.film.Kategoria })
         </div>
     </div>
     @Html.Raw(TempData["msg1"])

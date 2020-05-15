@@ -7,32 +7,28 @@
 @Html.Partial("~/Views/Shared/AdminLayout.cshtml")
 <h2>Shiko Rezervimet</h2>
 
-<p>
-    @Html.ActionLink("Krijo nje rezervim", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.vendi)
+            Id Rezervimi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.orari)
+            Titulli i Filmit
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statusi)
+            Emer Perdoruesi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Anulluar)
+            Salla
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Refuzuar)
+            Orari
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Filma_Salla.Id_filmi_salla)
+            Statusi
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Perdorue.Emer)
-        </th>
+
         <th></th>
     </tr>
 
