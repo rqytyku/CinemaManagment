@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CinemaManagment.Models.Filmi>
+
+@{
+    ViewBag.Title = "ShfaqFilma";
+}
+<h1 style="animation-duration"> Filmat tane</h1>
+
+<style>
+    .emri {
+        color: cadetblue;
+        font-family: "Times New Roman", Times, serif;
+        font-style: normal;
+        font-size: 20px;
+    }
+</style>
+<body style="background-color:#101010">
+    <table class="table">
+        <tr>
+            @foreach (var item in Model)
+            {
+
+                if (item.Id_Filmi % 1 == 0)
+                {
+                <tr></tr>
+                <br />
+                <tr></tr>
+                <br />
+            }
+            <td align="center">
+                <a href="@Url.Action("Details", "Filmis", new { id = item.Id_Filmi })" />
+                <img src=@Url.Content(item.Foto) width="50%" height="300" /> <br />
+                <div class="emri">
+                    @Html.DisplayFor(modelItem => item.Titulli)
+                    <br />
+                    @Html.ActionLink("Details", "Details", new { id = item.Id_Filmi })
+                    @Html.ActionLink("Rezervo Bilete", "rezervo", new { id = item.Id_Filmi })
+                </div>
+
+            </td>
+            <td></td>
+
+
+
+        }
+            </tr>
+        </table>
+    </body>

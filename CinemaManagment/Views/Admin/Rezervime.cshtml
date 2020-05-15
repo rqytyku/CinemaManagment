@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CinemaManagment.Models.Rezervimi>
+
+@{
+    ViewBag.Title = "Rezervim";
+
+}
+@Html.Partial("~/Views/Shared/AdminLayout.cshtml")
+<h2>Shiko Rezervimet</h2>
+
+<p>
+    @Html.ActionLink("Krijo nje rezervim", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.vendi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orari)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statusi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anulluar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Refuzuar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filma_Salla.Id_filmi_salla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perdorue.Emer)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Rezervim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filma_Salla.Filmi.Titulli)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perdorue.Emer)
+                @Html.DisplayFor(modelItem => item.Perdorue.Mbiemer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vendi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orari)
+            </td>
+            <td>
+                @if (item.Anulluar == true)
+                {
+                    @Html.LabelFor(modelItem => item.Anulluar, "Anulluar")
+                }
+                else if (item.Refuzuar == true)
+                {
+                    @Html.LabelFor(modelItem => item.Refuzuar, "Refuzuar")
+
+                }
+                else
+                {
+                    @Html.LabelFor(modelItem => item.statusi, "Aktiv")
+                }
+            </td>
+
+        </tr>
+    }
+
+</table>

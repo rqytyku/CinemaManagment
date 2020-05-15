@@ -1,0 +1,90 @@
+﻿@model CinemaManagment.Models.Rezervimi
+
+@{
+    ViewBag.Title = "Rezervo";
+}
+
+<h2>Rezervo</h2>
+
+<style>
+    .pershkrimi {
+        text-align: left;
+        margin-left: 5px;
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+        font-style: normal;
+        font-size: 20px;
+    }
+
+    .foto {
+        position: center;
+        margin-left: 400px;
+    }
+
+    .tab {
+        padding-left: initial;
+        margin-bottom: 10px;
+        border-spacing: 10px;
+        border-collapse: separate;
+        color: white;
+    }
+
+    .titulli {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 30px;
+        color: white;
+    }
+</style>
+<body style="background-color:#101010">
+    <div class="pershkrimi">
+        <h2>Rezervo nje bilete per filmin - @Html.DisplayFor(model => model.film.Titulli) </h2>
+
+        <table align="center">
+            <tr>
+                <td>
+                    <img src=@Url.Content(Model.film.Foto) width="200" height="300" />
+                </td>
+                <td>
+
+                    <p align="center">
+                        @Html.DisplayFor(model => model.film.Pershkrimi)
+                    </p>
+
+                </td>
+            </tr>
+        </table>
+
+        @using (Html.BeginForm())
+        {
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <div class="col-md-10">
+
+                        Zgjidh Orarin
+                        @Html.Hidden("SelectOrari", Model.orari)
+                        @Html.DropDownListFor(model => model.orari, new SelectList(Model.film.Filma_Salla, "orari", "orari"), "Zgjidhni orarin", new { @id = "orari", style = "color:black" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Rezervo" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Kthehu te Lista e filmave","ShfaqFilma", new { id = Model.film.Kategoria })
+        </div>
+    </div>
+    @Html.Raw(TempData["msg1"])
+
+
+</body>

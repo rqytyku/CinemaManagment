@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Menaxher";
+
+}
+
+@using CinemaManagment.Models
+@model IEnumerable < CinemaManagment.Models.Salla>
+@Html.Partial("~/Views/Shared/ManagerLayout.cshtml")
+<body>
+    <h2> Lista e Sallave</h2>
+    <p> Kjo eshte lista e te gjitha sallave te kesaj kinemaje me te dhenat perkatese. Nese deshironi te shtoni nje salle te re ju lutem klikoni butonin "krijo" me poshte.</p>
+    <input type="button" value="Krijo Salle" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Create", "Menaxher")'" />
+    <br />
+    <h2></h2>
+    <table class="table">
+        <tr>
+            <th>
+                ID Salle
+            </th>
+            <th>
+                Statusi
+            </th>
+            <th>
+                Numri i Rreshtave
+            </th>
+            <th>
+                Numri i Kolonave
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_Salla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statusi) |
+                    @if (item.Statusi == "Disabled")
+                    {
+                        @Html.ActionLink("Enable", "Enable", new { id = item.Id_Salla })}
+                    else if (item.Statusi == "Available")
+                    {
+
+
+                        @Html.ActionLink("Disable", "Disable", new { id = item.Id_Salla })
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nr_Rreshtave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nr_Kolonave)
+                </td>
+                <td>
+                    @if (item.Statusi == "Disabled" || item.Statusi == "Fully Booked") { }
+                    else
+                    {
+                        <span class="glyphicon">&#x2b;</span> @Html.ActionLink("Shto Event", "ShtoEvent", new { id = item.Id_Salla })
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@Html.Raw(TempData["msg"])
+@Html.Raw(TempData["rezsuccess"])
+

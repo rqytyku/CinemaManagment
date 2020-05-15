@@ -1,0 +1,43 @@
+﻿@model  CinemaManagment.Models.Kategori
+    @{ViewBag.Title = "Create";
+     }
+@Html.Partial("~/Views/Shared/ManagerLayout.cshtml")
+
+@using (Html.BeginForm("Create", "Kategoris", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p></p>
+    <h4>Shtoni nje Kategori te re Filmi duke plotesuar formen e meposhtme</h4>
+
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Emri, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Emri, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Emri, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="imagefile" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Shto" class="btn btn-primary btn-sm" />
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@Html.Raw(TempData["rezsuccess"])

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "ManagerLayout";
+}
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#230101">
+    <div class="container-fluid">
+        <div class="navbar-header" style="
+        color: #E3EBF5
+   ">
+            @Html.ActionLink("Menaxher", "Index", "Menaxher", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <ul class="nav navbar-nav">
+            <li style="color:#ffffff">@Html.ActionLink("Sallat", "Index", "Menaxher")</li>
+            <li>@Html.ActionLink("Rezervime", "Rezervime", "Menaxher")</li>
+            <li>@Html.ActionLink("Shto Kategori", "Create", "Kategoris")</li>
+            <li>@Html.ActionLink("Shto Film", "Add", "Filmis")</li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a href="@Url.Action("LogoutManager","Perdorues")"><span class="glyphicon glyphicon-log-out"></span> Dilni</a></li>
+        </ul>
+    </div>
+</div>
+<img src="~/fonts/Img/cine.jpg" width="1142" height="200" />
+

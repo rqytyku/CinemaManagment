@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CinemaManagment.Models.Rezervimi>
+@{
+    ViewBag.Title = "Rezervime";
+}
+@Html.Partial("~/Views/Shared/ManagerLayout.cshtml")
+
+<h2>Rezervime</h2>
+<table class="table">
+    <tr>
+        <th>
+            ID Rezervimi
+        </th>
+        <th>
+            ID Filmi Salle
+        </th>
+        <th>
+            ID Salle
+        </th>
+        <th>
+            Emer Perdorues
+        </th>
+        <th>
+            Vendi
+        </th>
+        <th>
+            Orari
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Rezervim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_filmi_salla)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Filma_Salla.Id_Salla)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perdorue.Emer)
+                @Html.DisplayFor(modelItem => item.Perdorue.Mbiemer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vendi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filma_Salla.Orari)
+            </td>
+
+            <td>
+                @if (item.Refuzuar != true)
+                {
+                    @Html.ActionLink("Refuzo", "Refuzo", new { id = item.Id_Rezervim, id_filmi_salla = item.Id_filmi_salla })
+                }
+                else { }
+
+            </td>
+
+        </tr>
+    }
+</table>
+@Html.Raw(TempData["anullo"])
+

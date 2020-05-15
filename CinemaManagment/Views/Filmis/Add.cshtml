@@ -1,0 +1,57 @@
+﻿@model CinemaManagment.Models.Filmi
+@{
+    ViewBag.Title = "Add";
+}
+@Html.Partial("~/Views/Shared/ManagerLayout.cshtml")
+<p>Shtoni nje film te ri duke plotesuar formen e meposhtme</p>
+
+@using (Html.BeginForm("Add", "Filmis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Titulli, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Titulli, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Titulli, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pershkrimi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pershkrimi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pershkrimi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="imagefile" required />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Kategoria, "Kategoria", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Kategoria", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Kategori.Emri, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Shto Film" class="btn btn-primary btn-sm" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@Html.Raw(TempData["rezsuccess"])

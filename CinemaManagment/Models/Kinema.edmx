@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KinemaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Filma_Salla">
+          <Key>
+            <PropertyRef Name="Id_filmi_salla" />
+          </Key>
+          <Property Name="Id_filmi_salla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Filmi" Type="int" Nullable="false" />
+          <Property Name="Id_Salla" Type="int" Nullable="false" />
+          <Property Name="Orari" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Filmi">
+          <Key>
+            <PropertyRef Name="Id_Filmi" />
+          </Key>
+          <Property Name="Id_Filmi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulli" Type="varchar" MaxLength="50" />
+          <Property Name="Pershkrimi" Type="varchar" MaxLength="500" />
+          <Property Name="Foto" Type="varchar" MaxLength="200" />
+          <Property Name="Kategoria" Type="int" />
+          <Property Name="Statusi" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="id_kategori" />
+          </Key>
+          <Property Name="id_kategori" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emri" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Foto" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id_log" />
+          </Key>
+          <Property Name="id_log" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_perdoruesi" Type="int" />
+          <Property Name="Data_exc" Type="datetime" />
+          <Property Name="Mesazhi" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Perdorue">
+          <Key>
+            <PropertyRef Name="ID_Perdorues" />
+          </Key>
+          <Property Name="ID_Perdorues" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emer" Type="varchar" MaxLength="20" />
+          <Property Name="Mbiemer" Type="varchar" MaxLength="20" />
+          <Property Name="NR_Kontakti" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Roli" Type="int" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fjalekalimi" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" />
+          <Property Name="IsEmailVerified" Type="bit" />
+          <Property Name="Statusi" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rezervimi">
+          <Key>
+            <PropertyRef Name="Id_Rezervim" />
+          </Key>
+          <Property Name="Id_Rezervim" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_filmi_salla" Type="int" />
+          <Property Name="ID_Perdorues" Type="int" />
+          <Property Name="vendi" Type="int" Nullable="false" />
+          <Property Name="orari" Type="datetime" />
+          <Property Name="statusi" Type="varchar" MaxLength="50" />
+          <Property Name="Anulluar" Type="bit" />
+          <Property Name="Refuzuar" Type="bit" />
+        </EntityType>
+        <EntityType Name="Roli">
+          <Key>
+            <PropertyRef Name="ID_Roli" />
+          </Key>
+          <Property Name="ID_Roli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Roli1" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salla">
+          <Key>
+            <PropertyRef Name="Id_Salla" />
+          </Key>
+          <Property Name="Id_Salla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Statusi" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nr_Rreshtave" Type="int" />
+          <Property Name="Nr_Kolonave" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Filma_Sal__Id_Fi__5DCAEF64">
+          <End Role="Filmi" Type="Self.Filmi" Multiplicity="1" />
+          <End Role="Filma_Salla" Type="Self.Filma_Salla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filmi">
+              <PropertyRef Name="Id_Filmi" />
+            </Principal>
+            <Dependent Role="Filma_Salla">
+              <PropertyRef Name="Id_Filmi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Filma_Sal__Id_Sa__5EBF139D">
+          <End Role="Salla" Type="Self.Salla" Multiplicity="1" />
+          <End Role="Filma_Salla" Type="Self.Filma_Salla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salla">
+              <PropertyRef Name="Id_Salla" />
+            </Principal>
+            <Dependent Role="Filma_Salla">
+              <PropertyRef Name="Id_Salla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Filmi__Kategoria__5165187F">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Filmi" Type="Self.Filmi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="id_kategori" />
+            </Principal>
+            <Dependent Role="Filmi">
+              <PropertyRef Name="Kategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Filmi">
+          <End Role="Filma_Salla" Type="Self.Filma_Salla" Multiplicity="0..1" />
+          <End Role="Rezervimi" Type="Self.Rezervimi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filma_Salla">
+              <PropertyRef Name="Id_filmi_salla" />
+            </Principal>
+            <Dependent Role="Rezervimi">
+              <PropertyRef Name="Id_filmi_salla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerdorueLog">
+          <End Role="Perdorue" Type="Self.Perdorue" Multiplicity="0..1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perdorue">
+              <PropertyRef Name="ID_Perdorues" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Id_perdoruesi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perdorues">
+          <End Role="Perdorue" Type="Self.Perdorue" Multiplicity="0..1" />
+          <End Role="Rezervimi" Type="Self.Rezervimi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perdorue">
+              <PropertyRef Name="ID_Perdorues" />
+            </Principal>
+            <Dependent Role="Rezervimi">
+              <PropertyRef Name="ID_Perdorues" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Roli">
+          <End Role="Roli" Type="Self.Roli" Multiplicity="0..1" />
+          <End Role="Perdorue" Type="Self.Perdorue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roli">
+              <PropertyRef Name="ID_Roli" />
+            </Principal>
+            <Dependent Role="Perdorue">
+              <PropertyRef Name="ID_Roli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KinemaDBModelStoreContainer">
+          <EntitySet Name="Filma_Salla" EntityType="Self.Filma_Salla" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Filmi" EntityType="Self.Filmi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perdorue" EntityType="Self.Perdorue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rezervimi" EntityType="Self.Rezervimi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roli" EntityType="Self.Roli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salla" EntityType="Self.Salla" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Filma_Sal__Id_Fi__5DCAEF64" Association="Self.FK__Filma_Sal__Id_Fi__5DCAEF64">
+            <End Role="Filmi" EntitySet="Filmi" />
+            <End Role="Filma_Salla" EntitySet="Filma_Salla" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Filma_Sal__Id_Sa__5EBF139D" Association="Self.FK__Filma_Sal__Id_Sa__5EBF139D">
+            <End Role="Salla" EntitySet="Salla" />
+            <End Role="Filma_Salla" EntitySet="Filma_Salla" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Filmi__Kategoria__5165187F" Association="Self.FK__Filmi__Kategoria__5165187F">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Filmi" EntitySet="Filmi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Filmi" Association="Self.FK_Filmi">
+            <End Role="Filma_Salla" EntitySet="Filma_Salla" />
+            <End Role="Rezervimi" EntitySet="Rezervimi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerdorueLog" Association="Self.FK_PerdorueLog">
+            <End Role="Perdorue" EntitySet="Perdorue" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perdorues" Association="Self.FK_Perdorues">
+            <End Role="Perdorue" EntitySet="Perdorue" />
+            <End Role="Rezervimi" EntitySet="Rezervimi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roli" Association="Self.FK_Roli">
+            <End Role="Roli" EntitySet="Roli" />
+            <End Role="Perdorue" EntitySet="Perdorue" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KinemaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Filma_Salla">
+          <Key>
+            <PropertyRef Name="Id_filmi_salla" />
+          </Key>
+          <Property Name="Id_filmi_salla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Filmi" Type="Int32" Nullable="false" />
+          <Property Name="Id_Salla" Type="Int32" Nullable="false" />
+          <Property Name="Orari" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Filmi" Relationship="Self.FK__Filma_Sal__Id_Fi__5DCAEF64" FromRole="Filma_Salla" ToRole="Filmi" />
+          <NavigationProperty Name="Salla" Relationship="Self.FK__Filma_Sal__Id_Sa__5EBF139D" FromRole="Filma_Salla" ToRole="Salla" />
+          <NavigationProperty Name="Rezervimis" Relationship="Self.FK_Filmi" FromRole="Filma_Salla" ToRole="Rezervimi" />
+        </EntityType>
+        <EntityType Name="Filmi">
+          <Key>
+            <PropertyRef Name="Id_Filmi" />
+          </Key>
+          <Property Name="Id_Filmi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulli" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pershkrimi" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Kategoria" Type="Int32" />
+          <Property Name="Statusi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Filma_Salla" Relationship="Self.FK__Filma_Sal__Id_Fi__5DCAEF64" FromRole="Filmi" ToRole="Filma_Salla" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK__Filmi__Kategoria__5165187F" FromRole="Filmi" ToRole="Kategori" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="id_kategori" />
+          </Key>
+          <Property Name="id_kategori" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Foto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Filmis" Relationship="Self.FK__Filmi__Kategoria__5165187F" FromRole="Kategori" ToRole="Filmi" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id_log" />
+          </Key>
+          <Property Name="id_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_perdoruesi" Type="Int32" />
+          <Property Name="Data_exc" Type="DateTime" Precision="3" />
+          <Property Name="Mesazhi" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Perdorue" Relationship="Self.FK_PerdorueLog" FromRole="Log" ToRole="Perdorue" />
+        </EntityType>
+        <EntityType Name="Perdorue">
+          <Key>
+            <PropertyRef Name="ID_Perdorues" />
+          </Key>
+          <Property Name="ID_Perdorues" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mbiemer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NR_Kontakti" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Roli" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fjalekalimi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActivationCode" Type="Guid" />
+          <Property Name="IsEmailVerified" Type="Boolean" />
+          <Property Name="Statusi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Logs" Relationship="Self.FK_PerdorueLog" FromRole="Perdorue" ToRole="Log" />
+          <NavigationProperty Name="Rezervimis" Relationship="Self.FK_Perdorues" FromRole="Perdorue" ToRole="Rezervimi" />
+          <NavigationProperty Name="Roli" Relationship="Self.FK_Roli" FromRole="Perdorue" ToRole="Roli" />
+        </EntityType>
+        <EntityType Name="Rezervimi">
+          <Key>
+            <PropertyRef Name="Id_Rezervim" />
+          </Key>
+          <Property Name="Id_Rezervim" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_filmi_salla" Type="Int32" />
+          <Property Name="ID_Perdorues" Type="Int32" />
+          <Property Name="vendi" Type="Int32" Nullable="false" />
+          <Property Name="orari" Type="DateTime" Precision="3" />
+          <Property Name="statusi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Anulluar" Type="Boolean" />
+          <Property Name="Refuzuar" Type="Boolean" />
+          <NavigationProperty Name="Filma_Salla" Relationship="Self.FK_Filmi" FromRole="Rezervimi" ToRole="Filma_Salla" />
+          <NavigationProperty Name="Perdorue" Relationship="Self.FK_Perdorues" FromRole="Rezervimi" ToRole="Perdorue" />
+        </EntityType>
+        <EntityType Name="Roli">
+          <Key>
+            <PropertyRef Name="ID_Roli" />
+          </Key>
+          <Property Name="ID_Roli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Roli1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Perdorues" Relationship="Self.FK_Roli" FromRole="Roli" ToRole="Perdorue" />
+        </EntityType>
+        <EntityType Name="Salla">
+          <Key>
+            <PropertyRef Name="Id_Salla" />
+          </Key>
+          <Property Name="Id_Salla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Statusi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nr_Rreshtave" Type="Int32" />
+          <Property Name="Nr_Kolonave" Type="Int32" />
+          <NavigationProperty Name="Filma_Salla" Relationship="Self.FK__Filma_Sal__Id_Sa__5EBF139D" FromRole="Salla" ToRole="Filma_Salla" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Filma_Sal__Id_Fi__5DCAEF64">
+          <End Role="Filmi" Type="Self.Filmi" Multiplicity="1" />
+          <End Role="Filma_Salla" Type="Self.Filma_Salla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filmi">
+              <PropertyRef Name="Id_Filmi" />
+            </Principal>
+            <Dependent Role="Filma_Salla">
+              <PropertyRef Name="Id_Filmi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Filma_Sal__Id_Sa__5EBF139D">
+          <End Role="Salla" Type="Self.Salla" Multiplicity="1" />
+          <End Role="Filma_Salla" Type="Self.Filma_Salla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salla">
+              <PropertyRef Name="Id_Salla" />
+            </Principal>
+            <Dependent Role="Filma_Salla">
+              <PropertyRef Name="Id_Salla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Filmi">
+          <End Role="Filma_Salla" Type="Self.Filma_Salla" Multiplicity="0..1" />
+          <End Role="Rezervimi" Type="Self.Rezervimi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filma_Salla">
+              <PropertyRef Name="Id_filmi_salla" />
+            </Principal>
+            <Dependent Role="Rezervimi">
+              <PropertyRef Name="Id_filmi_salla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Filmi__Kategoria__5165187F">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Filmi" Type="Self.Filmi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="id_kategori" />
+            </Principal>
+            <Dependent Role="Filmi">
+              <PropertyRef Name="Kategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerdorueLog">
+          <End Role="Perdorue" Type="Self.Perdorue" Multiplicity="0..1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perdorue">
+              <PropertyRef Name="ID_Perdorues" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Id_perdoruesi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perdorues">
+          <End Role="Perdorue" Type="Self.Perdorue" Multiplicity="0..1" />
+          <End Role="Rezervimi" Type="Self.Rezervimi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perdorue">
+              <PropertyRef Name="ID_Perdorues" />
+            </Principal>
+            <Dependent Role="Rezervimi">
+              <PropertyRef Name="ID_Perdorues" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Roli">
+          <End Role="Roli" Type="Self.Roli" Multiplicity="0..1" />
+          <End Role="Perdorue" Type="Self.Perdorue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roli">
+              <PropertyRef Name="ID_Roli" />
+            </Principal>
+            <Dependent Role="Perdorue">
+              <PropertyRef Name="ID_Roli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KinemaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Filma_Salla" EntityType="Self.Filma_Salla" />
+          <EntitySet Name="Filmis" EntityType="Self.Filmi" />
+          <EntitySet Name="Kategoris" EntityType="Self.Kategori" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="Perdorues" EntityType="Self.Perdorue" />
+          <EntitySet Name="Rezervimis" EntityType="Self.Rezervimi" />
+          <EntitySet Name="Rolis" EntityType="Self.Roli" />
+          <EntitySet Name="Sallas" EntityType="Self.Salla" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK__Filma_Sal__Id_Fi__5DCAEF64" Association="Self.FK__Filma_Sal__Id_Fi__5DCAEF64">
+            <End Role="Filmi" EntitySet="Filmis" />
+            <End Role="Filma_Salla" EntitySet="Filma_Salla" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Filma_Sal__Id_Sa__5EBF139D" Association="Self.FK__Filma_Sal__Id_Sa__5EBF139D">
+            <End Role="Salla" EntitySet="Sallas" />
+            <End Role="Filma_Salla" EntitySet="Filma_Salla" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Filmi" Association="Self.FK_Filmi">
+            <End Role="Filma_Salla" EntitySet="Filma_Salla" />
+            <End Role="Rezervimi" EntitySet="Rezervimis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Filmi__Kategoria__5165187F" Association="Self.FK__Filmi__Kategoria__5165187F">
+            <End Role="Kategori" EntitySet="Kategoris" />
+            <End Role="Filmi" EntitySet="Filmis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerdorueLog" Association="Self.FK_PerdorueLog">
+            <End Role="Perdorue" EntitySet="Perdorues" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perdorues" Association="Self.FK_Perdorues">
+            <End Role="Perdorue" EntitySet="Perdorues" />
+            <End Role="Rezervimi" EntitySet="Rezervimis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roli" Association="Self.FK_Roli">
+            <End Role="Roli" EntitySet="Rolis" />
+            <End Role="Perdorue" EntitySet="Perdorues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KinemaDBModelStoreContainer" CdmEntityContainer="KinemaDBEntities">
+          <EntitySetMapping Name="Filma_Salla">
+            <EntityTypeMapping TypeName="KinemaDBModel.Filma_Salla">
+              <MappingFragment StoreEntitySet="Filma_Salla">
+                <ScalarProperty Name="Id_filmi_salla" ColumnName="Id_filmi_salla" />
+                <ScalarProperty Name="Id_Filmi" ColumnName="Id_Filmi" />
+                <ScalarProperty Name="Id_Salla" ColumnName="Id_Salla" />
+                <ScalarProperty Name="Orari" ColumnName="Orari" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Filmis">
+            <EntityTypeMapping TypeName="KinemaDBModel.Filmi">
+              <MappingFragment StoreEntitySet="Filmi">
+                <ScalarProperty Name="Id_Filmi" ColumnName="Id_Filmi" />
+                <ScalarProperty Name="Titulli" ColumnName="Titulli" />
+                <ScalarProperty Name="Pershkrimi" ColumnName="Pershkrimi" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+                <ScalarProperty Name="Statusi" ColumnName="Statusi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoris">
+            <EntityTypeMapping TypeName="KinemaDBModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="id_kategori" ColumnName="id_kategori" />
+                <ScalarProperty Name="Emri" ColumnName="Emri" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="KinemaDBModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="id_log" ColumnName="id_log" />
+                <ScalarProperty Name="Id_perdoruesi" ColumnName="Id_perdoruesi" />
+                <ScalarProperty Name="Data_exc" ColumnName="Data_exc" />
+                <ScalarProperty Name="Mesazhi" ColumnName="Mesazhi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perdorues">
+            <EntityTypeMapping TypeName="KinemaDBModel.Perdorue">
+              <MappingFragment StoreEntitySet="Perdorue">
+                <ScalarProperty Name="ID_Perdorues" ColumnName="ID_Perdorues" />
+                <ScalarProperty Name="Emer" ColumnName="Emer" />
+                <ScalarProperty Name="Mbiemer" ColumnName="Mbiemer" />
+                <ScalarProperty Name="NR_Kontakti" ColumnName="NR_Kontakti" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID_Roli" ColumnName="ID_Roli" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Fjalekalimi" ColumnName="Fjalekalimi" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+                <ScalarProperty Name="Statusi" ColumnName="Statusi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rezervimis">
+            <EntityTypeMapping TypeName="KinemaDBModel.Rezervimi">
+              <MappingFragment StoreEntitySet="Rezervimi">
+                <ScalarProperty Name="Id_Rezervim" ColumnName="Id_Rezervim" />
+                <ScalarProperty Name="Id_filmi_salla" ColumnName="Id_filmi_salla" />
+                <ScalarProperty Name="ID_Perdorues" ColumnName="ID_Perdorues" />
+                <ScalarProperty Name="vendi" ColumnName="vendi" />
+                <ScalarProperty Name="orari" ColumnName="orari" />
+                <ScalarProperty Name="statusi" ColumnName="statusi" />
+                <ScalarProperty Name="Anulluar" ColumnName="Anulluar" />
+                <ScalarProperty Name="Refuzuar" ColumnName="Refuzuar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rolis">
+            <EntityTypeMapping TypeName="KinemaDBModel.Roli">
+              <MappingFragment StoreEntitySet="Roli">
+                <ScalarProperty Name="ID_Roli" ColumnName="ID_Roli" />
+                <ScalarProperty Name="Roli1" ColumnName="Roli1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sallas">
+            <EntityTypeMapping TypeName="KinemaDBModel.Salla">
+              <MappingFragment StoreEntitySet="Salla">
+                <ScalarProperty Name="Id_Salla" ColumnName="Id_Salla" />
+                <ScalarProperty Name="Statusi" ColumnName="Statusi" />
+                <ScalarProperty Name="Nr_Rreshtave" ColumnName="Nr_Rreshtave" />
+                <ScalarProperty Name="Nr_Kolonave" ColumnName="Nr_Kolonave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KinemaDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

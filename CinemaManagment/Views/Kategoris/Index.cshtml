@@ -1,0 +1,170 @@
+﻿@model IEnumerable<CinemaManagment.Models.Kategori>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-1.8.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            var currentPosition = 0;
+            var slideWidth = 900;
+            var slides = $('.slide');
+            var numberOfSlides = slides.length;
+            setInterval(changePosition, 2500);
+            slides.wrapAll('<div id="slidesHolder"></div>');
+            slides.css({ 'float': 'left' });
+            $('#slidesHolder').css('width', slideWidth * numberOfSlides);
+
+            function changePosition() {
+                if (currentPosition == numberOfSlides - 1) {
+                    currentPosition = 0;
+                }
+                else {
+                    currentPosition++;
+                }
+                moveSlide();
+            }
+
+
+            function moveSlide() {
+                $('#slidesHolder').animate({ 'marginLeft': slideWidth * (-currentPosition) });
+            }
+        });
+
+    </script>
+
+   <style type="text/css">
+        #slideshow #slideshowWindow {
+            width: 900px;
+            height: 200px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 15px;
+            padding: 0;
+            position: center;
+            overflow: hidden;
+        }
+
+            #slideshow #slideshowWindow .slide {
+                margin: 0;
+                padding: 0;
+                width: 900px;
+                height: 200px;
+                float: left;
+                position: relative;
+            }
+
+        .auto-style6 {
+            width: 900px;
+            height: 200px;
+        }
+
+        .auto-style10 {
+            attachment: fixed;
+            position: center;
+            height: 200px;
+            width: 900px;
+            margin-top: 0px;
+            margin-left: 120px;
+        }
+
+        .emri {
+            color: white;
+            font-family: "Times New Roman", Times, serif;
+            font-style: normal;
+            font-size: 30px;
+        }
+
+        .tab-content {
+            padding: 5px;
+            border-spacing: 15px;
+            border-collapse: separate;
+        }
+
+        .auto-style11 {
+            attachment: fixed;
+            position: center;
+            height: 250px;
+            width: 900px;
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+
+        .header {
+            position: page;
+            text-align: center;
+            font-size: 60px;
+            margin-top: 1px;
+            margin-bottom: 5px;
+            color: white;
+            font-family:'Lucida Calligraphy';
+        }
+
+        .glyphicon glyphicon-film {
+            background-color: white;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+<body style="background-color:#17202A">
+    @*<body style="background-image: "https://us.123rf.com/450wm/panychev/panychev1703/panychev170300026/74235620-blank-dark-blue-and-black-background-abstract-material-texture.jpg?ver=6">*@
+
+
+    <div id="slideshow" class="auto-style10">
+        <div id="slideshowWindow" class="auto-style10">
+            <div class="slide">
+                <b></b><img src="~/fonts/Img/thor_movie_poster-8.jpg" class="auto-style11" />
+            </div>
+            <div class="slide"><b></b><img src="~/fonts/Img/0f363878394009.5ca5065fc0f7c.jpg" class="auto-style11" /> </div>
+            <div class="slide"><b></b><img src="~/fonts/Img/Films_TV-Hero-1260x600.jpg" class="auto-style11" /> </div>
+            <div class="slide"><b></b><img src="~/fonts/Img/53f7bf1330895378.jpg" class="auto-style11" /> </div>
+            <div class="slide"><b></b><img src="~/fonts/Img/cine.jpg" class="auto-style11" /> </div>
+        </div>
+    </div>
+
+    &nbsp;&nbsp;
+
+    <h2 class="header">
+        <p> <span class="glyphicon glyphicon-film"></span>  Kinemaja Ime </p>
+    </h2>
+    <table align="center" class="tab-content">
+        <tr>
+
+            @foreach (var item in Model)
+            {
+
+                if (item.id_kategori % 4 == 0)
+                {
+                <tr><td><td></td></tr>
+                <tr><td><td></td></tr>
+                <br />
+            }
+            <td align="center">
+                <a href="@Url.Action("ShfaqFilma", "Filmis", new { id = item.id_kategori })" />
+                <img src=@Url.Content(item.Foto) width="230" height="230" />
+                <br />
+                <div class="emri">
+                    @Html.DisplayFor(modelItem => item.Emri, new { htmlAttributes = new { @class = "emri" } })
+                </div>
+            </td>
+            <td></td>
+        }
+
+
+            </tr>
+        </table>
+    </body>
+    @Html.Raw(TempData["mssg"])
+

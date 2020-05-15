@@ -1,0 +1,174 @@
+﻿@model CinemaManagment.Models.Perdorue
+@{
+    ViewBag.Title = "Registration";
+}
+
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+        border: 3px solid #f1f1f1;
+    }
+
+    input[type=text], input[type=password] {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 10%;
+        border-radius: 50%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    .containerright {
+        padding: 100px;
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+</style>
+<div class="imgcontainer">
+    <img src="~/fonts/Img/register.jpg" alt="Avatar" class="avatar">
+</div>
+
+<div class="container">
+
+
+    @if (ViewBag.status != null)
+    {
+        if (ViewBag.Message != null)
+        {
+            <div class="alert-success">
+                <strong>Success!</strong>
+            </div>
+            <h4 align="Center">
+                <p> Kliko Hyr per te hyre ne sistem </p>
+                <hr />
+                <input type="button" value="Hyr" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Login", "Perdorues")'" />
+
+            </h4>
+        }
+    }
+    else
+    {
+
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 align="center">Ju lutem plotesoni te dhenat e meposhtme per tu Rregjistruar ne sistem </h4>
+                <hr />
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Emer, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Emer, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Emer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Mbiemer, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Mbiemer, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Mbiemer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NR_Kontakti, "Numri i Telefonit", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NR_Kontakti, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NR_Kontakti, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("EmailExists", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, "Emer Perdoruesi", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Fjalekalimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Fjalekalimi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Fjalekalimi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Rregjistrohu" class="btn btn-primary btn-sm" />
+                    </div>
+                </div>
+            </div>
+            if (ViewBag.Message != null)
+            {
+                <div class="alert alert-danger">
+                    <strong>Error!</strong>
+                </div>
+            }
+        }
+
+        <hr />
+        <h4 align="Center">
+            <p>Jeni te rregjistruar? Kliko Hyr per te hyre ne sistem </p>
+            <hr />
+            <input type="button" value="Hyr" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Login", "Perdorues")'" />
+
+        </h4>
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

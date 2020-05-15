@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "AdminLayout";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#003D5F">
+    <div class="container-fluid">
+        <div class="navbar-header" style="color: #ffffff">
+
+            @Html.ActionLink("Admin", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li style="color:#ffffff">@Html.ActionLink("Perdorues", "Index", "Admin")</li>
+            <li>@Html.ActionLink("Rezervime", "Rezervime", "Admin")</li>
+
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="@Url.Action("LogoutAdmin","Perdorues")"><span class="glyphicon glyphicon-log-out"></span> Dilni</a></li>
+        </ul>
+    </div>
+</div>
+<img src="~/fonts/Img/film.jpg" width="1142" height="200" />
+

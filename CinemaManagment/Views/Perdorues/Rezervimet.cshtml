@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CinemaManagment.Models.Rezervimi>
+
+@{
+    ViewBag.Title = "Rezervimet";
+}
+<img src="https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-cute-color-cinema-tickets-poster-panels-watercolor-background-material-image_131796.jpg" width="1142" height="200" />
+<h2>Rezervimet Aktive</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.film.Titulli)
+        </th>
+        <th>
+            Salla
+        </th>
+
+        <th>
+            Vendi
+        </th>
+        <th>
+            Orari
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filma_Salla.Filmi.Titulli)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filma_Salla.Id_Salla)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.vendi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orari)
+            </td>
+            <td>
+                @Html.ActionLink("Anullo rezervimin", "Anullo", new { id = item.Id_Rezervim, id_filmi_salla = item.Id_filmi_salla })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.Raw(TempData["anullosuccess"])
+@Html.Raw(TempData["rezsuccess"])
+
+

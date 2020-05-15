@@ -1,0 +1,74 @@
+﻿@model CinemaManagment.Models.Perdorue
+
+@{
+    ViewBag.Title = "Detajet";
+}
+
+<h2>Te dhenat e perdoueseve </h2>
+
+<div>
+    <h4>Lista e perdoruesve</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Emer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mbiemer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mbiemer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NR_Kontakti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NR_Kontakti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statusi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statusi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roli.Roli1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roli.Roli1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Perdorues }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

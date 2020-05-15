@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CinemaManagment.Models.Perdorue>
+@{
+    ViewBag.Title = "Perdorues";
+}
+
+@Html.Partial("~/Views/Shared/AdminLayout.cshtml")
+
+<br />
+<hr />
+<p>
+    @Html.ActionLink("Shto Perdorues", "Registration", null, new { @class = "btn btn-primary btn-sm" })
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                Username
+            </th>
+
+            <th>
+                Statusi
+            </th>
+
+            <th>
+                Roli
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statusi) |
+                    @if (item.Statusi == "Activ")
+                    {
+                        @Html.ActionLink("Disable", "Disable", new { id = item.ID_Perdorues })}
+                    else if (item.ID_Perdorues != 0)
+                    {
+
+
+                        @Html.ActionLink("Enable", "Enable", new { id = item.ID_Perdorues })
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Roli.Roli1)
+                </td>
+                <td>
+                    @Html.ActionLink("Ndrysho", "Edit", new { id = item.ID_Perdorues }) |
+                    @Html.ActionLink("Detajet", "Details", new { id = item.ID_Perdorues })
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8872910e97564fd28e8ba1edf38ef875" Name="Diagram1">
+        <EntityTypeShape EntityType="KinemaDBModel.Filma_Salla" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.Filmi" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.Kategori" Width="1.5" PointX="1.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.Log" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.Perdorue" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.Rezervimi" Width="1.5" PointX="8.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.Roli" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.Salla" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinemaDBModel.sysdiagram" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="KinemaDBModel.FK__Filma_Sal__Id_Fi__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="KinemaDBModel.FK__Filma_Sal__Id_Sa__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="KinemaDBModel.FK_Filmi" ManuallyRouted="false" />
+        <AssociationConnector Association="KinemaDBModel.FK__Filmi__Kategoria__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="KinemaDBModel.FK_PerdorueLog" ManuallyRouted="false" />
+        <AssociationConnector Association="KinemaDBModel.FK_Perdorues" ManuallyRouted="false" />
+        <AssociationConnector Association="KinemaDBModel.FK_Roli" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
