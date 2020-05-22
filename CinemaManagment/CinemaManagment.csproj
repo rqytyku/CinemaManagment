@@ -407,7 +407,6 @@
     <Content Include="Views\Filmis\Add.cshtml" />
     <Content Include="Views\Filmis\Rezervo.cshtml" />
     <Content Include="Views\Menaxher\Create.cshtml" />
-    <Content Include="Views\Filmis\Index.cshtml" />
     <Content Include="Views\Filmis\Details.cshtml" />
     <Content Include="Views\Menaxher\Index.cshtml" />
     <Content Include="Views\Menaxher\Rezervime.cshtml" />
